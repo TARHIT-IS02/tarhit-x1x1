@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TZ Photo Edit</string>
+    <string name="quotes_title">Quotes</string>
+    <string name="tab_themes">Templates</string>
+    <string name="tab_text">Text</string>
+    <string name="tab_image">Image</string>
+    <string name="tab_bg">Background</string>
+    <string name="tab_effects">Effects</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="save_project">Save as Project</string>
+    <string name="save_image">Save as Image</string>
+    <string name="my_projects">My Projects</string>
+</resources>

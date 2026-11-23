@@ -1,0 +1,1082 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pixellab_workspace_bg">
+
+    <!-- System Status Bar Inset Spacer (solid black like PixelLab) -->
+    <View
+        android:id="@+id/statusBarSpacer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- PixelLab 2-Row Blue Top Bar -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/pixellab_header_blue"
+        android:elevation="4dp"
+        android:orientation="vertical"
+        android:paddingTop="2dp"
+        android:paddingBottom="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/statusBarSpacer">
+
+        <!-- Row 1: Add | Save | Share | Grid | More -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="4dp">
+
+            <ImageButton
+                android:id="@+id/btnAdd"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Add"
+                android:padding="7dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_add"
+                app:tint="@color/white" />
+
+            <ImageButton
+                android:id="@+id/btnSave"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Save"
+                android:padding="7dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_save"
+                app:tint="@color/white" />
+
+            <ImageButton
+                android:id="@+id/btnShare"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Export"
+                android:padding="7dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_share"
+                app:tint="@color/white" />
+
+            <ImageButton
+                android:id="@+id/btnGrid"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Grid"
+                android:padding="7dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_grid"
+                app:tint="@color/white" />
+
+            <ImageButton
+                android:id="@+id/btnMore"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="More"
+                android:padding="7dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_more"
+                app:tint="@color/white" />
+        </LinearLayout>
+
+        <!-- Row 2: Undo | Redo | Translucent Zoom Pill | Hand Tool | Layers -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="6dp">
+
+            <ImageButton
+                android:id="@+id/btnUndo"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Undo"
+                android:padding="7dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_undo"
+                app:tint="@color/white" />
+
+            <ImageButton
+                android:id="@+id/btnRedo"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Redo"
+                android:padding="7dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_redo"
+                app:tint="@color/white" />
+
+            <!-- Translucent Zoom & Fit-to-Screen Pill inside Top Bar -->
+            <LinearLayout
+                android:id="@+id/zoomControlPill"
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:layout_marginHorizontal="4dp"
+                android:background="@drawable/bg_zoom_pill"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="5dp">
+
+                <ImageButton
+                    android:id="@+id/btnZoomOut"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Zoom Out"
+                    android:padding="6dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_zoom_out"
+                    app:tint="@color/white" />
+
+                <TextView
+                    android:id="@+id/zoomIndicatorPill"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:gravity="center"
+                    android:minWidth="42dp"
+                    android:paddingHorizontal="4dp"
+                    android:text="100%"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/btnZoomIn"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Zoom In"
+                    android:padding="6dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_zoom_in"
+                    app:tint="@color/white" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="18dp"
+                    android:layout_marginHorizontal="3dp"
+                    android:background="#33FFFFFF" />
+
+                <ImageButton
+                    android:id="@+id/btnZoomFit"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Fit to Screen"
+                    android:padding="6dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_fit_screen"
+                    app:tint="@color/white" />
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btnHandTool"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Hand Tool"
+                android:padding="7dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_hand"
+                app:tint="@color/white" />
+
+            <ImageButton
+                android:id="@+id/btnLayers"
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Layers"
+                android:padding="7dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_layers"
+                app:tint="@color/white" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Main Working Area -->
+    <FrameLayout
+        android:id="@+id/workingArea"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/bottomDockContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBar">
+
+        <com.imaginstudio.imagetools.pixellab.view.CanvasStageView
+            android:id="@+id/canvasStage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- Floating Top Pill Bar (Apply / Cancel / Reset) for Warp, Cutout & Retouch -->
+        <LinearLayout
+            android:id="@+id/floatingToolBar"
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="10dp"
+            android:elevation="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="6dp"
+            android:visibility="gone">
+
+            <ImageButton
+                android:id="@+id/btnToolApply"
+                android:layout_width="50dp"
+                android:layout_height="32dp"
+                android:contentDescription="Apply"
+                android:padding="6dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_check"
+                app:tint="@color/white" />
+
+            <ImageButton
+                android:id="@+id/btnToolCancel"
+                android:layout_width="38dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="4dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Cancel"
+                android:padding="6dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_close"
+                app:tint="#EF4444" />
+
+            <ImageButton
+                android:id="@+id/btnToolReset"
+                android:layout_width="38dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="2dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Reset"
+                android:padding="7dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_reset" />
+        </LinearLayout>
+
+        <!-- Floating Cutout Selection HUD (shown under floatingToolBar during Cutout tool) -->
+        <HorizontalScrollView
+            android:id="@+id/floatingCutoutHud"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="56dp"
+            android:elevation="8dp"
+            android:scrollbars="none"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/floatingCutoutHudCard"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="6dp">
+
+                <TextView
+                    android:id="@+id/btnHudClosePoly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:text="Close Path"
+                    android:textSize="11.5sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/btnHudKeepIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:text="Keep In"
+                    android:textSize="11.5sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnHudEraseIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:text="Erase In"
+                    android:textSize="11.5sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnHudCopyLayer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:text="Copy"
+                    android:textSize="11.5sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnHudCutLayer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:text="Cut"
+                    android:textSize="11.5sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnHudInvert"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:text="Invert"
+                    android:textSize="11.5sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnHudClear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:gravity="center"
+                    android:paddingHorizontal="10dp"
+                    android:text="Clear"
+                    android:textSize="11.5sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Mixed PixelLab + HTML Floating Grid Bar (bottom of workingArea when Grid is ON) -->
+        <HorizontalScrollView
+            android:id="@+id/floatingGridBar"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginBottom="10dp"
+            android:elevation="8dp"
+            android:scrollbars="none"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/floatingGridBarCard"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="6dp">
+
+                <ImageButton
+                    android:id="@+id/btnGridMagnet"
+                    android:layout_width="34dp"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:contentDescription="Magnet Snap"
+                    android:padding="5dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_magnet" />
+
+                <ImageButton
+                    android:id="@+id/btnGridEditToggle"
+                    android:layout_width="34dp"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:contentDescription="Grid Edit Mode"
+                    android:padding="5dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_grid" />
+
+                <View
+                    android:id="@+id/gridEditDivider"
+                    android:layout_width="1dp"
+                    android:layout_height="20dp"
+                    android:layout_marginHorizontal="4dp"
+                    android:background="#CBD5E1"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:id="@+id/gridEditControlsGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/btnGridAddH"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginHorizontal="2dp"
+                        android:gravity="center"
+                        android:paddingHorizontal="8dp"
+                        android:text="+H"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnGridAddV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginHorizontal="2dp"
+                        android:gravity="center"
+                        android:paddingHorizontal="8dp"
+                        android:text="+V"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnGridPos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginHorizontal="2dp"
+                        android:gravity="center"
+                        android:paddingHorizontal="8dp"
+                        android:text="Pos"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:id="@+id/btnGridDelGuide"
+                        android:layout_width="34dp"
+                        android:layout_height="30dp"
+                        android:layout_marginHorizontal="2dp"
+                        android:contentDescription="Delete Guide"
+                        android:padding="6dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_delete" />
+
+                    <TextView
+                        android:id="@+id/btnGridCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_marginHorizontal="2dp"
+                        android:gravity="center"
+                        android:paddingHorizontal="8dp"
+                        android:text="Count"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:id="@+id/btnGridSettings"
+                        android:layout_width="34dp"
+                        android:layout_height="30dp"
+                        android:layout_marginHorizontal="2dp"
+                        android:contentDescription="Grid Settings"
+                        android:padding="5dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_settings" />
+                </LinearLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Exit Fullscreen Button -->
+        <Button
+            android:id="@+id/btnExitFullscreen"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_gravity="top|end"
+            android:layout_margin="12dp"
+            android:text="Exit Fullscreen"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+        <!-- Slide-over Layers Drawer -->
+        <LinearLayout
+            android:id="@+id/layersDrawer"
+            android:layout_width="@dimen/layers_layout_width"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:background="@color/pixellab_panel_bg"
+            android:elevation="10dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/layersHeaderBar"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="10dp">
+
+                <TextView
+                    android:id="@+id/layersTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Layers"
+                    android:textColor="#0F172A"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/btnLayersSelectAll"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:minWidth="0dp"
+                    android:paddingHorizontal="8dp"
+                    android:text="All"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/btnLayersMultiSelect"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:minWidth="0dp"
+                    android:paddingHorizontal="8dp"
+                    android:text="Select"
+                    android:textSize="12sp" />
+
+                <ImageButton
+                    android:id="@+id/btnCloseLayers"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Close Layers"
+                    android:src="@drawable/ic_close" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/layersRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:clipToPadding="false"
+                android:padding="8dp" />
+
+            <LinearLayout
+                android:id="@+id/layersBatchBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:elevation="4dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/pixellab_divider" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="4dp">
+
+                        <LinearLayout
+                            android:id="@+id/btnBatchHide"
+                            android:layout_width="54dp"
+                            android:layout_height="match_parent"
+                            android:background="?attr/selectableItemBackground"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:id="@+id/ivBatchHide"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:importantForAccessibility="no"
+                                android:src="@drawable/ic_eye"
+                                app:tint="#334155" />
+                            <TextView
+                                android:id="@+id/tvBatchHide"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Hide"
+                                android:textColor="#334155"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/btnBatchLock"
+                            android:layout_width="54dp"
+                            android:layout_height="match_parent"
+                            android:background="?attr/selectableItemBackground"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:id="@+id/ivBatchLock"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:importantForAccessibility="no"
+                                android:src="@drawable/ic_lock"
+                                app:tint="#334155" />
+                            <TextView
+                                android:id="@+id/tvBatchLock"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Lock"
+                                android:textColor="#334155"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/btnBatchCopy"
+                            android:layout_width="54dp"
+                            android:layout_height="match_parent"
+                            android:background="?attr/selectableItemBackground"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:importantForAccessibility="no"
+                                android:src="@drawable/ic_copy"
+                                app:tint="#334155" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Copy"
+                                android:textColor="#334155"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/btnBatchMerge"
+                            android:layout_width="54dp"
+                            android:layout_height="match_parent"
+                            android:background="?attr/selectableItemBackground"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:importantForAccessibility="no"
+                                android:src="@drawable/ic_layers"
+                                app:tint="#1577E6" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Merge"
+                                android:textColor="#1577E6"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/btnBatchDelete"
+                            android:layout_width="54dp"
+                            android:layout_height="match_parent"
+                            android:background="?attr/selectableItemBackground"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:importantForAccessibility="no"
+                                android:src="@drawable/ic_delete"
+                                app:tint="@color/pixellab_danger" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Delete"
+                                android:textColor="@color/pixellab_danger"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/btnBatchFront"
+                            android:layout_width="54dp"
+                            android:layout_height="match_parent"
+                            android:background="?attr/selectableItemBackground"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:importantForAccessibility="no"
+                                android:src="@drawable/ic_to_front"
+                                app:tint="#334155" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Front"
+                                android:textColor="#334155"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/btnBatchBack"
+                            android:layout_width="54dp"
+                            android:layout_height="match_parent"
+                            android:background="?attr/selectableItemBackground"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:importantForAccessibility="no"
+                                android:src="@drawable/ic_to_back"
+                                app:tint="#334155" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Back"
+                                android:textColor="#334155"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/btnBatchAlign"
+                            android:layout_width="54dp"
+                            android:layout_height="match_parent"
+                            android:background="?attr/selectableItemBackground"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:importantForAccessibility="no"
+                                android:src="@drawable/ic_align_center_h"
+                                app:tint="#334155" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="Align"
+                                android:textColor="#334155"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- Clipping Dock Container matching exact PixelLab bottom bar height & slide-down reveal -->
+    <FrameLayout
+        android:id="@+id/bottomDockContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clipChildren="true"
+        android:clipToPadding="true"
+        app:layout_constraintBottom_toTopOf="@id/navBarSpacer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- Expandable Bottom Tool Sheet (sits behind bottomControls at exact same height) -->
+        <LinearLayout
+            android:id="@+id/optionExpandPanel"
+            android:layout_width="match_parent"
+            android:layout_height="146dp"
+            android:background="@color/pixellab_panel_bg"
+            android:clickable="true"
+            android:elevation="2dp"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+        <View
+            android:id="@+id/optionExpandDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/pixellab_divider" />
+
+        <LinearLayout
+            android:id="@+id/optionExpandBody"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical" />
+    </LinearLayout>
+
+        <!-- Bottom Strip + 5 Main Tabs (slides downward cleanly over optionExpandPanel inside bottomDockContainer) -->
+        <LinearLayout
+            android:id="@+id/bottomControls"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/pixellab_panel_bg"
+            android:elevation="6dp"
+            android:orientation="vertical">
+
+        <View
+            android:id="@+id/bottomControlsDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/pixellab_divider" />
+
+        <HorizontalScrollView
+            android:id="@+id/optionsStripScroll"
+            android:layout_width="match_parent"
+            android:layout_height="92dp"
+            android:background="@color/pixellab_panel_bg"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/optionsStrip"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="6dp" />
+        </HorizontalScrollView>
+
+        <View
+            android:id="@+id/tabsTopDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/pixellab_tab_border" />
+
+        <LinearLayout
+            android:id="@+id/tabsBar"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:background="@color/pixellab_workspace_bg"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/tabThemes"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/ivTabThemes"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_themes" />
+                <TextView
+                    android:id="@+id/tvTabThemes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:text="@string/tab_themes"
+                    android:textSize="9.5sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tabText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/ivTabText"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_text" />
+                <TextView
+                    android:id="@+id/tvTabText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:text="@string/tab_text"
+                    android:textSize="9.5sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tabShapes"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/ivTabShapes"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_image" />
+                <TextView
+                    android:id="@+id/tvTabShapes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:text="@string/tab_image"
+                    android:textSize="9.5sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tabBg"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/ivTabBg"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_bg_board" />
+                <TextView
+                    android:id="@+id/tvTabBg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@string/tab_bg"
+                    android:textSize="9.5sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tabEffects"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/ivTabEffects"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_effects" />
+                <TextView
+                    android:id="@+id/tvTabEffects"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:text="@string/tab_effects"
+                    android:textSize="9.5sp" />
+            </LinearLayout>
+        </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- Floating Styles Popup (Browse / Save) anchored above Styles button -->
+    <LinearLayout
+        android:id="@+id/stylesPopup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/bg_styles_popup"
+        android:elevation="12dp"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/bottomDockContainer"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/btnPopupBrowse"
+            android:layout_width="64dp"
+            android:layout_height="52dp"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_folder"
+                app:tint="#555555" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="browse"
+                android:textColor="#444444"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="6dp"
+            android:background="#D0D0D0" />
+
+        <LinearLayout
+            android:id="@+id/btnPopupSave"
+            android:layout_width="64dp"
+            android:layout_height="52dp"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_save"
+                app:tint="#555555" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="save"
+                android:textColor="#444444"
+                android:textSize="11sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- System Navigation Bar Inset Spacer (solid black like PixelLab, elevated to clip sliding bottom bar cleanly) -->
+    <View
+        android:id="@+id/navBarSpacer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/black"
+        android:elevation="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

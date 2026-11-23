@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="64dp"
+    android:layout_marginBottom="6dp"
+    android:background="@color/white"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingHorizontal="6dp">
+
+    <ImageView
+        android:id="@+id/dragHandle"
+        android:layout_width="28dp"
+        android:layout_height="44dp"
+        android:contentDescription="Drag to reorder"
+        android:paddingHorizontal="4dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_drag_handle" />
+
+    <CheckBox
+        android:id="@+id/layerCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/layerPreview"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="8dp"
+        android:background="#64748B"
+        android:importantForAccessibility="no"
+        android:padding="2dp"
+        android:scaleType="fitCenter" />
+
+    <TextView
+        android:id="@+id/layerName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:paddingStart="0dp"
+        android:paddingEnd="4dp"
+        android:text="Layer"
+        android:textColor="#0F172A"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+    <ImageButton
+        android:id="@+id/btnLayerHide"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Toggle visibility"
+        android:src="@drawable/ic_eye" />
+
+    <ImageButton
+        android:id="@+id/btnLayerLock"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Toggle lock"
+        android:src="@drawable/ic_lock" />
+
+    <ImageButton
+        android:id="@+id/btnLayerDelete"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Delete layer"
+        android:src="@drawable/ic_delete" />
+</LinearLayout>

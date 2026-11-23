@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="pixellab_header_blue">#1577E6</color>
+    <color name="pixellab_pill_blue">#1163C4</color>
+    <color name="pixellab_pill_logo">#DFE9FF</color>
+    <color name="pixellab_panel_bg">#F5F5F5</color>
+    <color name="pixellab_workspace_bg">#FAFAFA</color>
+    <color name="pixellab_tab_border">#BCD0F5</color>
+    <color name="pixellab_divider">#DDDDDD</color>
+    <color name="pixellab_teal">#009688</color>
+    <color name="pixellab_danger">#E11D48</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+</resources>
